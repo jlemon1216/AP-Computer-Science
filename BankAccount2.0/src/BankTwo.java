@@ -4,7 +4,7 @@ public class BankTwo {
 
 	Scanner scan = new Scanner(System.in);
 	BankAccount[] clients = new BankAccount[5];
-	List<String> accounts = new ArrayList<String>();
+	ArrayList<BankAccount> accounts = new ArrayList<BankAccount>();
 
 	public static void main(String[] args) {
 
@@ -72,30 +72,21 @@ public class BankTwo {
 	}
 
 	public void openAccount() {
-		boolean empty = false;
-
-		for (int i = 0; i < clients.length; i++) {
-			if (clients[i] == null && empty == false) {
-				empty = true;
-				System.out.println("Enter a Name");
-				String name = scan.nextLine();
-				for (int z = 0; z < clients.length; z++) {
-					if (clients[z] != null && clients[z].name.equals(name)) {
-						System.out.println("Name already Exists! Choose another name.");
-						menu();
-					}
-				}
-				System.out.println("Enter your balance");
-				int balance = scan.nextInt();
-				clients[i] = new BankAccount(name, balance);
-				System.out.println("Bank Account Created. Your balance is: $" + balance);
-				menu();
+		System.out.println("Enter a name for your account.");
+		String name = scan.nextLine();							//Gets name for account
+		System.out.println("Enter your starting balance.");		
+		int bal = scan.nextInt();								//Gets starting Balance
+		BankAccount b = new BankAccount(name, bal);				//Creates Bank Account for name and balance
+		for(int i = 0; i < accounts.size(); i++) {
+			if(accounts.get(i).name.equals(b.name)) {			//Checks if Bank Account name exists
+				System.out.println("Name already exists! Please choose another name.");
+				
 			}
-
 		}
-		System.out.println("Account spaces filled. \n\nReturning to menu...\n\n");
+		accounts.add(b);
+		System.out.println("Account Created!");
+		menu();
 	}
-
 	public void closeAccount(int i) {
 		clients[i] = null;
 		System.out.println("Account Deleted\n\nReturning to menu...\n\n");
