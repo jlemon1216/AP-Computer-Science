@@ -32,45 +32,31 @@ public class BankTwo {
 	}
 
 	public void login() {
-		System.out.println("Enter your name");
-		String user = scan.nextLine();
-		boolean found = false;
-		for (int i = 0; i < clients.length; i++) {
-			if (clients[i] != null && user.equals(clients[i].name)) {
-				found = true;
-				System.out.println("You have been logged in as: " + clients[i].name + "\n");
-				while (true) {
-					System.out.println("What would you like to do?");
-					System.out.println("1: Close Account\n2: Deposit\n3: Withdraw\n4: Log Out");
-					int choice = scan.nextInt();
-					if (choice == 1) {
-						closeAccount(i);
-						break;
-					}
-					if (choice == 2) {
-						System.out.println("Enter an amount to deposit");
-						double deposit = scan.nextDouble();
-						clients[i].deposit(deposit);
-						System.out.println("\n\nYour balance is now: $" + clients[i].balance + "\n");
-					}
-					if (choice == 3) {
-						System.out.println("Enter an amount to withdrawal");
-						double withdraw = scan.nextDouble();
-						clients[i].withdraw(withdraw);
-						System.out.println("\n\nYour balance is now: $" + clients[i].balance + "\n");
-					}
-					if (choice == 4)
-						break;
+		System.out.println("Please Enter Your Account Name.");
+		String check = scan.nextLine();
+		for(int i = 0; i <= accounts.size(); i++) {
+			if(accounts.size() != 0 && accounts.get(i).name.equals(check)) {
+				System.out.println("Welcome, " + accounts.get(i).name + "!\nWhat would you like to do?\n1. Close Account\n2. Withdraw\n3. Deposit\n4. Log Out");
+				int choice = scan.nextInt();
+				if(choice == 1)
+					closeAccount(accounts.get(i));
+				if(choice == 2) {
+					System.out.println("How much would you like to Withdraw?");
+					int w = scan.nextInt();
+					accounts.get(i).withdraw(w);
 				}
-
+				if(choice == 3)	{
+					System.out.println("How much would you like to deposit");
+					int d = scan.nextInt();
+					accounts.get(i).deposit(d);
+				}
+				if(choice == 4)
+					break;
 			}
-
-		}
-		if (found == false) {
-			System.out.println("Account not found.\n\n");
+			else
+				System.out.println("Account not found! Returning to menu..");
 		}
 	}
-
 	public void openAccount() {
 		System.out.println("Enter a name for your account.");
 		String name = scan.nextLine();							//Gets name for account
@@ -80,18 +66,17 @@ public class BankTwo {
 		for(int i = 0; i < accounts.size(); i++) {
 			if(accounts.get(i).name.equals(b.name)) {			//Checks if Bank Account name exists
 				System.out.println("Name already exists! Please choose another name.");
-				
+				menu();
 			}
 		}
 		accounts.add(b);
 		System.out.println("Account Created!");
 		menu();
 	}
-	public void closeAccount(int i) {
-		clients[i] = null;
+	public void closeAccount(BankAccount b) {
+		accounts.remove(b);
 		System.out.println("Account Deleted\n\nReturning to menu...\n\n");
 	}
-
 	public void exit() {
 		System.out.println("Exiting Bank.");
 	}
