@@ -13,11 +13,11 @@ public class BankTwo {
 		mybank.openBank();
 	}
 
-	public void openBank() {
+	public void openBank() {  //opens the bank
 		menu();
 	}
 
-	public void menu() {
+	public void menu() {  //The main menu of the program, gives the three main options that allow the user to interact with the bank.
 		while (true) {
 			System.out.println("What would you like to do?\n1: Login\n2: Create Account\n3: Exit");
 			int u = scan.nextInt();
@@ -32,7 +32,7 @@ public class BankTwo {
 		System.out.println("Now leaving...");
 	}
 
-	public void login() {
+	public void login() {  //Prompts the user for an account name, if it is a real account name, the "login menu" is shown.
 		System.out.println("Please enter your account name.");
 		String name = scan.nextLine();
 		if (accounts.size() != 0) {						//Checks if any accounts exist
@@ -47,7 +47,7 @@ public class BankTwo {
 		}
 	}
 
-	public void loginMenu(BankAccount b) {
+	public void loginMenu(BankAccount b) { //This menu is used when the user has logged in, using the "login" method.
 				boolean found = true;
 				while (true) {
 					System.out.println("Welcome, " + b.name + "!\nWhat would you like to do?\n1. Close Account\n2. Withdraw\n3. Deposit\n4. Log Out");
@@ -68,13 +68,13 @@ public class BankTwo {
 			System.out.println("Account not found. Returning to menu...");
 		}
 	}
-	public void deposit(BankAccount b) {
+	public void deposit(BankAccount b) {  //deposits money into the user's bank account.
 		System.out.println("How much would you like to deposit?");
 		int d = scan.nextInt();				//Asks user how much they would like to deposit, and deposits it
 		b.deposit(d);
 		System.out.println("Deposited $" + d + ". New balance: $" + b.balance); //Returns new amount
 	}
-	public void withdrawal(BankAccount b) {
+	public void withdrawal(BankAccount b) {  //withdraws money from the user's bank account.
 		System.out.println("How much would you like to Withdraw?");
 		int w = scan.nextInt();				//Asks user how much they would like to withdrawal, and withdraws it
 		b.withdraw(w);												
@@ -82,7 +82,7 @@ public class BankTwo {
 	}
 	
 	
-	public void openAccount() {
+	public void openAccount() {   //allows the user to create an account, as long as the name is not already being used.
 		System.out.println("Enter a name for your account.");
 		String name = scan.nextLine(); // Gets name for account
 		System.out.println("Enter your starting balance.");
@@ -98,11 +98,11 @@ public class BankTwo {
 		System.out.println("Account Created! Your Balance: $" + bal);  //Lets user know account was successfully created
 		menu();
 	}
-	public void closeAccount(BankAccount b) {
+	public void closeAccount(BankAccount b) {  //Deletes the account the user was currently logged into.
 		accounts.remove(b);										//Removes account from ArrayList
 		System.out.println("Account Deleted\n\nReturning to menu...\n\n");
 	}
-	public void exit() {
+	public void exit() {  //completely exits out of the program
 		System.out.println("Exiting Bank.");
 	}
 }
