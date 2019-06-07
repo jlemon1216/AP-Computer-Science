@@ -22,10 +22,22 @@ public class Deck {
 		
 		for(int shuffle = 0; shuffle < 10; shuffle++) {
 			for(int swap = 0; swap < 101; swap++) {
-				
+				int flip1 = (int)Math.random()*53;
+				int flip2 = (int)Math.random()*53;
+				Card temp = theDeck.get(flip2);
+				theDeck.set(flip1, temp);
+				theDeck.remove(flip2);
+				theDeck.set(flip2, theDeck.get(flip1));
 			}
 		}
 		
+	}
+	public Card getCard() {
+		return theDeck.remove(0);
+		
+	}
+	public void setCard(Card x) {
+		theDeck.add(52, x);  
 	}
 	
 }
