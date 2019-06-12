@@ -39,5 +39,7 @@ public class Deck {
 	public void setCard(Card x) {
 		theDeck.add(52, x);  
 	}
-	
+	public int getSize(ArrayList<Card> x) {
+		return theDeck.size();
+	}
 }
