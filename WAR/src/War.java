@@ -41,11 +41,29 @@ public class War {
 	}
 
 	public void play() {
-		
+		ArrayList<Card> playedCards = new ArrayList<Card>();
+		for(int i = 0; i < playerList.size(); i++) {
+			playedCards.add(playerList.get(i).getCard());
+		}
 
+	}
+	public void findWinner(ArrayList<Card> x) {
+		Card winner = x.get(0);
+		for(int i = 1; i < playerList.size(); i++) {
+			int y = x.get(i).getVal();
+			if(x.get(i).getVal() == 1)
+				y = 14;
+			if(x.get(i).getVal() > winner.getVal()) {
+				winner = x.get(i);
+			}
+			if(x.get(i).getVal() == winner.getVal()) {
+				war();
+			}
+		}
 	}
 
 	public void war(ArrayList<Player> tempPlayer) {
+		
 
 	}
 }
